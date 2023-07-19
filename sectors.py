@@ -33,7 +33,7 @@ def all_per(TIC):
     avg = np.average(periods)
     print('The avgerage is', avg, 'with a std of ', std)
 
-def momentum_dumps(TIC)
+def momentum_dumps(TIC):
     search = search_result(TIC)
     
     sectors = []
@@ -67,5 +67,18 @@ def momentum_dumps(TIC)
         plt.legend(loc='best', fontsize = 12)
     
         plt.show()
+
+def stitch(TIC):
+    # want to add code that allows to change the range of stiched light curve, ie if data in sec 1-13 & 27-37 just want to show 27-37
+    lc_full = lk.search_lightcurve(TIC, author = 'SPOC', cadence = 120).download_all()
+    stitch = lc_full.stitch()
+    
+    stitch.scatter()
+    
+    pg = stitch.to_periodogram(maximum_period=30)
+    pg.plot()
+    print('The period at max power: ', pg.period_at_max_power)
+  
+
     
     
