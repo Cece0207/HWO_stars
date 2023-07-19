@@ -34,7 +34,6 @@ def all_per(TIC):
     print('The avgerage is', avg, 'with a std of ', std)
 
 def momentum_dumps(TIC)
-
     search = search_result(TIC)
     
     sectors = []
