@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import scipy.optimize 
+from sectors import*
 
 def get_values(name, sector = -1):
     
