@@ -7,7 +7,37 @@ import matplotlib.pyplot as plt
 def search_result(TIC):
     search_result = lk.search_lightcurve(TIC, author = 'SPOC', cadence = 120)
     return search_result
+    
+def single_sector(TIC, sector = -1):
+    
+    # layout of the figure
+    fig, axes = plt.subplots(3, 1)
+    fig.set_figheight(15)
+    fig.set_figwidth(10)
+    fig.tight_layout(pad=5.0)
+    
+    # Gathering data from specific sector
+    search = search_result(TIC)
+    
+    if sector == -1:
+        lc = search[len(search)-1].download()
+    else:
+        lc = lk.search_lightcurve(name, author = 'SPOC', sector = sector, cadence = 120).download()
 
+    # Creating plots    
+    lc.normalize().scatter(ax=axes[0], c='k', label = 'Light Curve') 
+
+    pg = lc.to_periodogram(maximum_period=30)
+    pg.plot(ax = axes[1], view='period', c='k', label = 'Periodogram')
+
+    lc_model = pg.model(time=lc.time, frequency=pg.frequency_at_max_power)
+    lc.normalize().scatter(ax=axes[2], c='k', label = 'Light Curve') 
+    lc_model.plot(ax=axes[2], lw=3, ls='--', c='red', title = 'Model')
+    
+    # More figure layouts
+    title = str(TIC) + ', Sector: ' + str(lc.sector)
+    fig.suptitle(title, fontsize=16)
+    
 def plot_all_sectors(TIC):
     search_result = search_result(TIC)
     
