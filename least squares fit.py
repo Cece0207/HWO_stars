@@ -1,3 +1,9 @@
+import lightkurve as lk
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import scipy.optimize 
+
 def get_values(name, sector = -1):
     
     search = search_result(name)
