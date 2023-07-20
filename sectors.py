@@ -22,7 +22,7 @@ def single_sector(TIC, sector = -1):
     if sector == -1:
         lc = search[len(search)-1].download()
     else:
-        lc = lk.search_lightcurve(name, author = 'SPOC', sector = sector, cadence = 120).download()
+        lc = lk.search_lightcurve(TIC, author = 'SPOC', sector = sector, cadence = 120).download()
 
     # Creating plots    
     lc.normalize().scatter(ax=axes[0], c='k', label = 'Light Curve') 
