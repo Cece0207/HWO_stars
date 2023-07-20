@@ -1,3 +1,9 @@
+import lightkurve as lk
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
 def search_result(TIC):
     search_result = lk.search_lightcurve(TIC, author = 'SPOC', cadence = 120)
     return search_result
