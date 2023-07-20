@@ -89,7 +89,7 @@ def least_square_fit(TIC, sector = -1):
   print('Freq: ' +str(result['freq']))
   print('Period: ' +str(result['period']))
   
-  plt.plot(t, f,"-k", label="TIC 371520835", linewidth=2)
+  plt.plot(t, f,"-k", label=TIC, linewidth=2)
   plt.plot(t, result["fitfunc"](t), "r-", label="sin fit curve", linewidth=2)
   plt.legend(loc="best")
   plt.show()
